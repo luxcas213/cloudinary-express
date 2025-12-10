@@ -1,3 +1,4 @@
+import "dotenv/config";
 import * as authService from "../services/auth.js";
 import jwt from "jsonwebtoken";
 

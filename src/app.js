@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import index from "./routes/index.js";
 import auth from "./routes/auth.js";
+import uploadRouter from "./routes/upload.js";
 import prisma from "./lib/prisma.js";
 
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use("/index", index);
 app.use("/auth", auth);
+app.use("/upload", uploadRouter);
 
 
 if (process.env.NODE_ENV !== "test") {
