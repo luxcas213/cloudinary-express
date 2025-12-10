@@ -19,3 +19,27 @@ export const uploadFile = async (req, res) => {
     res.status(500).json({ error: "Failed to upload image" });
   }
 };
+
+export const listFiles = async (req, res) => {
+  try {
+    const files = await uploadService.getAllUploads();
+    res.json(files);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getFile = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const file = await uploadService.getUploadById(id);
+
+    if (!file) {
+      return res.status(404).json({ error: "File not found" });
+    }
+
+    res.json(file);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

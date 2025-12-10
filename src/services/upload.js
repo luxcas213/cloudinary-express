@@ -33,3 +33,19 @@ export const uploadImage = async (fileBuffer, originalName, mimeType, size) => {
     stream.pipe(uploadStream);
   });
 };
+
+export const getAllUploads = async () => {
+  return await prisma.upload.findMany({
+    orderBy: { createdAt: "desc" },
+    select: {
+      id: true,
+      originalName: true,
+    },
+  });
+};
+
+export const getUploadById = async (id) => {
+  return await prisma.upload.findUnique({
+    where: { id: parseInt(id) },
+  });
+};
